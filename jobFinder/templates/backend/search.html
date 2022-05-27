@@ -1,0 +1,25 @@
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'styles/search.css' %}">
+    </head>
+<body>
+{% include 'navbar.html' %}
+<center><h1>Job offers:</h1><hr>
+       <h3> {% for job in jobs %}
+        
+        <br>
+            <div class="col-md-8 mt-4 mb-4" >
+            <h3>{{job.title}}</h3>
+            <p>Category: {{job.category}}</p>
+            <p>{{job.published}}</p>
+            <a href="{% url 'job_info' job.id %}">
+            <button class="button" role="button">Check offer</a>
+            </div>
+            </br>
+            <hr>
+        {% endfor %}</h3>
+        </div></center>
+        
+</html>
+</body>

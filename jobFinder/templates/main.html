@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="{% static 'styles/main.css' %}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+		<title>JobFinder</title>
+	</head>
+
+	<body>
+		{% block content %}
+		{% include 'navbar.html' %}
+		<header>
+            <!-- Intro settings -->
+            <style>
+              /* Default height for small devices */
+              #intro-example {
+                height: 400px;
+              }
+          
+              /* Height for devices larger than 992px */
+              @media (min-width: 992px) {
+                #intro-example {
+                  height: 600px;
+                }
+              }
+			  .background-image {
+                min-height: calc(100vh - 56px);
+                background-image: url("{%  static 'n.jpg' %}");
+
+			  background-attachment: fixed;
+			  background-repeat: no-repeat;
+			  background-size: cover;
+			  z-index: 100; }
+            </style>      
+          
+            <!-- Background image -->
+            <div
+              id="intro-example"
+              class="p-5 text-center bg-image"
+              style="background-image: url('https://cdn.pixabay.com/photo/2016/11/22/21/26/notebook-1850613_960_720.jpg'); height: 715px; background-position: center top; width: 100vw; background-attachment: fixed;
+			  background-repeat: no-repeat;
+			  background-size: cover;
+			  z-index: 100;"
+            >
+              <div class="mask" style="background-color: rgba(0, 0, 0, 0.7);">
+                <div class="d-flex justify-content-center align-items-center h-100 ">
+                  <div class="text-white">
+                    <h1 class="mb-3">JOBFINDER</h1>
+                    <h5 class="mb-4">Find perfect job</h5>
+					
+					<div class="container text-white">
+						<form  action="{% url 'search' %}" method="get">
+						  {% comment %} {% csrf_token %} {% endcomment %}
+						  <input type="text" name="q" placeholder="Search Blog">
+						  <a href = "{% url 'search'%}">
+						  <button class="btn btn-primary" type="submit">Search</button>
+						  </a>
+						</form>
+				  
+
+					  <br>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Background image -->
+			
+          </header>	
+
+
+		  <!-- Footer -->
+		  <div class="footer-basic">
+			<footer>
+				<div class="social"><a href="https://github.com/AgnieszkaHoma/jobPortal"><i class="icon ion-social-github"></i></a></div>
+				<ul class="list-inline">
+					<li class="list-inline-item"><a href="#">Home</a></li>
+					<li class="list-inline-item"><a href="#">Jobs</a></li>
+					<li class="list-inline-item"><a href="#">About</a></li>
+					<li class="list-inline-item"><a href="#">Contact</a></li>
+					{% comment %} <li class="list-inline-item"><a href="#">Privacy Policy</a></li> {% endcomment %}
+				</ul>
+				<p class="copyright">Agnieszka Homa © 2022</p>
+			</footer>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+  <!-- Footer -->
+		{% endblock %}
+	</body>
+</html>

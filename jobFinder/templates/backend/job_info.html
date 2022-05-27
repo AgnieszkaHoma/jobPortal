@@ -1,0 +1,58 @@
+{% extends 'main.html' %}
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'styles/jobs.css'%}" />
+    </head>
+<body>
+{% block content %}
+{% include 'navbar.html' %}
+{% static 'images' as baseUrl %}
+
+
+    <div class="container py-4 my-4 mx-auto d-flex flex-column">
+        <div class="header">
+            <div class="row r1">
+                <div class="col-md-9 abc">
+                    <h1>{{ job.title }} </h1>
+                </div>
+            </div>
+        </div>
+        <div class="container-body mt-4">
+            <div class="row r3">
+                <div class="col-md-5 p-0 klo">
+                    <ul>
+                        <li>Company: {{ job.company }}</li>
+                        <li>Category: {{ job.get_category_display }}</li>
+                        <li>Job Type: {{ job.jobType}}</li>
+                        <li>Category: {{ job.category }}</li>
+                        <li>Contract type: {{ job.contractType }}</li>
+                        <li>Experience: {{ job.experience }}</li>
+                        <li>Programming language: {{job.proglanguage}}</li>
+                        <li>Place: {{ job.place }}</li>
+                        <li>Salary: {{ job.salary }}$</li>
+                        <li>Description: {{ job.description }}</li>
+                    </ul>
+                </div>
+                <div class="col-md-7"> <img src="{{baseUrl}}/{{job.image}}" alt="Job" width="90%" height="95%"> </div>
+            </div>
+        </div>
+        <div class="footer d-flex flex-column mt-5">
+            <div class="row r4">
+                
+                
+                <div class="col-md-2 mio offset-md-4"><a href="#">Back to all jobs</a></div>
+                <div class="col-md-2 myt "><button type="button" class="btn btn-outline-warning"><a href="#">Apply</a></button></div>
+                {% if job.status == 'active' %}
+                <a href="{% url 'apply_for_job' job.id %}" class="button is-success">Apply for job</a>
+            {% else %}
+                <p>This job is not available anymore!</p>
+            {% endif %}
+            </div>
+            <br>
+            <h6>Published: {{job.published}}</h6>
+        </div>
+    </div>
+{% endblock %}
+</html>
+</body>

@@ -1,0 +1,102 @@
+{% extends 'main.html' %}
+<html>
+
+{% block content %}
+{% include 'navbar.html' %}
+<div class="col-md-3 col-md-offset-3">
+    <div id="add-job-app">
+        <h1 class="title">Add job</h1>
+
+        <form v-on:submit="validateForm" method="post" action=".">
+            {% csrf_token %}
+
+            <div class="field">
+                <label>Title</label>
+
+                <div class="control">
+                    <input class="input" type="text" name="title" id="id_title" v-model="title" placeholder="Title" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Description</label>
+
+                <div class="control">
+                    <textarea class="textarea" name="description" id="id_description" v-model="description" placeholder="Description" required></textarea>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Company</label>
+
+                <div class="control">
+                    <textarea class="textarea" name="company" id="id_company" v-model="company" placeholder="Company" required></textarea>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>job Type</label>
+
+                <div class="control">
+                    <input class="input" type="text" name="jobType" id="id_jobType" v-model="jobType" placeholder="Job Type" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>contract Type</label>
+
+                <div class="control">
+                    <input class="input" type="text" name="contractType" id="id_contractType" placeholder="Contract Type" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Experience</label>
+
+                <div class="control">
+                    <input class="input" type="text" name="experience" id="id_experience" placeholder="Experience" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Image</label>
+
+                <div class="control">
+                    <input type="image" name="image" id="id_image"required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Programming glanguage</label>
+
+                <div class="control">
+                    <input class="input" type="text" name="proglanguage" id="id_proglanguage" placeholder="Programming language" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Place</label>
+
+                <div class="control">
+                    <input class="input" type="text" name="place" id="id_place" placeholder="Place" required>
+                </div>
+            </div>   
+            
+            <div class="field">
+                <label>Salary</label>
+
+                <div class="control">
+                    <input class="input" type="text" name="salary" id="id_salary" placeholder="Salary" required>
+                </div>
+            </div>
+<br>
+            <div class="field">
+                <div class="control">
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+</hmtl>

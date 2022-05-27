@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% extends 'main.html'%} 
+{% load static %}
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Jobs</title>
+		<meta name="description" content="" />
+	</head>
+	<body>
+	{% block content %} 
+    {% include 'navbar.html' %}
+	
+	{% static 'images' as baseUrl %}
+	<center><h1>All jobs</h1><center>      
+	<h4>We have found {{jobs.count}} jobs.<h4> 
+	<br>
+	<div class="container">
+		<div class="row text-center">
+		
+
+		<div class="col-xl-3 col-sm-6 mb-5">
+		{% for job in jobs %}	
+		<div class="col-xs-6 "
+
+<div class="card">
+    <h5 class="card-header">{{job.title}}</h5>
+    <div class="card-body">
+      <h5 class="card-text">Category: {{job.get_category_display}}</h5>
+      <p class="card-text">Programming language: {{ job.proglanguage}}</p>
+      <p class="card-text">Company name: {{job.company}}</p>
+      <p class="card-text">Place: {{job.place}}</p>
+      <p class="card-text">Salary: {{job.salary}}$</p>
+	  <p class="card-text">Published: {{job.published}}</p>
+      <a href="{% url 'job_info' job.id %}" class="btn btn-primary">Check offer</a>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}
+</body>
+</html>
