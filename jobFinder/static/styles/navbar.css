@@ -1,44 +1,42 @@
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'Koulen', cursive;
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Koulen', cursive;
 }
-body{
-    background-color: rgb(255, 255, 255);
+body {
+	background-color: rgb(255, 255, 255);
 }
-.navbar{
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: rgb(28, 32, 71);
-   
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px 20px;
+	background-color: rgb(28, 32, 71);
 }
-.logo h2{
-    color: #fff;
-    letter-spacing: 6px;
-    cursor: pointer;
+.logo h2 {
+	color: #fff;
+	letter-spacing: 6px;
+	cursor: pointer;
 }
-.items ul a{
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-    margin: 0 20px;
-    font-size: 19px;
-    
+.items ul a {
+	color: rgb(255, 255, 255);
+	text-decoration: none;
+	margin: 0 20px;
+	font-size: 19px;
 }
-.items ul a:hover{
-    color: rgb(170, 180, 214);
+.items ul a:hover {
+	color: rgb(170, 180, 214);
 }
-.btn button{
-    padding: 5px 20px;
-    background-color: transparent;
-    border: 1px solid #fff;
-    border-radius: 10px;
-    color: #fff;
-    font-size: 18px;
-    outline: none;
-    cursor: pointer;
+.btn button {
+	padding: 5px 20px;
+	background-color: transparent;
+	border: 1px solid #fff;
+	border-radius: 10px;
+	color: #fff;
+	font-size: 18px;
+	outline: none;
+	cursor: pointer;
 }
-.btn button:hover{
-    background-color: rgb(170, 180, 214);
-    color: rgb(28, 32, 71);
+.btn button:hover {
+	background-color: rgb(170, 180, 214);
+	color: rgb(28, 32, 71);
 }

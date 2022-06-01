@@ -20,25 +20,24 @@
             <ul>
                 <a href="{% url 'home' %}">HOME</a>
                 <a href="{% url 'jobs' %}">JOBS</a>
-                <a href="#">ABOUT</a>
+                <a href="{% url 'about' %}">ABOUT</a>
                 <a href="{% url 'contact' %}">CONTACT</a>
             </ul>
         </div>
-        {% comment %} {% if user.is_authenticated %}	
+        {% if user.is_authenticated %}	
         <div class="btn">           
+            <a href="{% url 'profile' user %}"><button class="btn btn-primary">PROFILE</button></a>
+            <a href="{% url 'signout'%}"><button class="btn btn-primary">LOGOUT</button></a>
+        </div> 
+        {% else %}
+        <div class="btn">     
             <button>
-                 <a href="#">PROFILE</a>
+                 <a href="{% url 'loginPage' %}">PROFILE</a>
             </button>
-        </div> {% endcomment %}
-
-        {% comment %} {% else %}	 {% endcomment %}
-        <div class="btn">           
-            <button>
-                 {% comment %} <a href="{% url 'loginPage' %}">PROFILE</a> {% endcomment %}
-                 PROFILE
-            </button>
+        </a>
         </div>
-        {% comment %} {% endif %} {% endcomment %}
+
+        {% endif %}
     </div>
 </body>
 </html>

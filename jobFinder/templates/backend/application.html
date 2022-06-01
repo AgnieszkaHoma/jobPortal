@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Contact</title>
+		<meta name="description" content="" />
+	</head>
+	<body>
+{% include 'navbar.html' %}
+{% block content %}
+<center>
+<br>
+    <h1 class="title">Apply for job - {{ job.title }}</h1>
+    
+
+    <form method="post" action=".">
+        {% csrf_token %}
+
+        <div class="field">
+            <label>Full name</label>
+
+            <div class="control">
+                <textarea class="textarea" name="fullname" id="id_fullname"></textarea>
+            </div>
+        </div>
+
+        <div class="field">
+            <label>E-mail</label>
+
+            <div class="control">
+                <textarea class="email" name="email" id="id_email"></textarea>
+            </div>
+        </div>
+
+        <div class="field">
+            <label>Introduce yourself</label>
+
+            <div class="control">
+                <textarea class="textarea" name="introduceyourself" id="id_introduceyourself"></textarea>
+            </div>
+        </div>
+
+        <div class="field">
+            <label>CV file</label>
+
+            <div class="control">
+                <input type="file" name="file" id="id_file"></input>
+            </div>
+        </div>
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <div class="field">
+            <div class="control">
+                <button type="button" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</center>
+{% endblock %}
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</body>
+</html>

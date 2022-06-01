@@ -39,15 +39,11 @@
         </div>
         <div class="footer d-flex flex-column mt-5">
             <div class="row r4">
-                
-                
-                <div class="col-md-2 mio offset-md-4"><a href="#">Back to all jobs</a></div>
-                <div class="col-md-2 myt "><button type="button" class="btn btn-outline-warning"><a href="#">Apply</a></button></div>
-                {% if job.status == 'active' %}
-                <a href="{% url 'apply_for_job' job.id %}" class="button is-success">Apply for job</a>
-            {% else %}
-                <p>This job is not available anymore!</p>
-            {% endif %}
+                           
+                <div class="col-md-2 mio offset-md-4">
+                    <button type="button" class="btn btn-outline-warning"><a href="{% url 'jobs' %}">Back to all jobs</a></button></div>
+                <div class="col-md-2 myt ">
+                    <button type="button" class="btn btn-outline-warning"><a href="{% url 'application' job.id %}">Apply for job</a></button></div>
             </div>
             <br>
             <h6>Published: {{job.published}}</h6>

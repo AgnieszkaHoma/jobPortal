@@ -132,3 +132,31 @@ def delete_job(request, id):
         messages.success(request, 'Job offer was deleted!')
 
     return redirect('home')
+
+def signout(request):
+    logout(request)
+    return redirect('home')
+
+@login_required
+def application(request, job_id):
+    job = Job.objects.get(pk=job_id)
+
+    if request.method == 'POST':
+        form = ApplicationForm(request.POST)
+
+        if form.is_valid():
+            application = form.save(commit=False)
+            application.job = job
+            application.created_by = request.user
+            application.save()
+            
+            return redirect('jobs')
+    else:
+        form = ApplicationForm()
+    
+    return render(request, 'backend/application.html', {'form': form, 'job': job})
+
+@login_required
+def profile(request, username):
+    user = User.objects.get(username=username)
+    return render(request, 'backend/profile.html', {"user" : user})

@@ -2,6 +2,7 @@ from tkinter import Place
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.contrib.auth.models import AbstractUser
 
 JOB_CHOICES = (
     ('Full Time', 'Full Time'),
@@ -47,8 +48,8 @@ EXPERIENCE_CHOICES = (
     ('Mid', 'Mid'),
     ('Senior', 'Senior'),
     ('Expert', 'Expert'),
-)
-
+)   
+ 
 class Contact(models.Model):
     email = models.EmailField(null=True, blank=True)
     title = models.CharField(max_length=500, null=True, blank=True)
@@ -76,10 +77,13 @@ class Job(models.Model):
         return self.title
     
 class Application(models.Model):
+    job = models.ForeignKey(Job, related_name='apply', on_delete=models.CASCADE, null=True)
     fullName = models.CharField(max_length=100, null=True, blank=True)
     email = models.EmailField()
     introduceYourself = models.TextField()
     file = models.FileField(null=True)
+    created_date = models.DateTimeField(auto_now_add=True, null=True)
+    created_by = models.ForeignKey(User, related_name='apply', on_delete=models.CASCADE, null = True)
     
     def __str__(self):
         return self.fullName

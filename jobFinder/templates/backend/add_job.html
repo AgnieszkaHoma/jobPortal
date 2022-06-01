@@ -1,6 +1,6 @@
 {% extends 'main.html' %}
 <html>
-
+{% load static %}
 {% block content %}
 {% include 'navbar.html' %}
 <div class="col-md-3 col-md-offset-3">
@@ -62,7 +62,7 @@
                 <label>Image</label>
 
                 <div class="control">
-                    <input type="image" name="image" id="id_image"required>
+                    <input type="file" name="image" id="id_image"required>
                 </div>
             </div>
 
