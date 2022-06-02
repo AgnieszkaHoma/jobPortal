@@ -3,10 +3,12 @@ from django.urls import path, include
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from . views import AddJobView, UserEditProfileView, PasswordsChangeView
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('register',views.register, name="register"),
+    path('register',views.UserRegisterView.as_view(), name="register"),
     path('loginPage',views.loginPage, name="loginPage"),
     path('signout',views.signout, name="signout"),
     path('jobs',views.all_jobs, name="jobs"),
@@ -14,7 +16,12 @@ urlpatterns = [
     path('contact',views.contact, name="contact"),
     path('jobs/<int:job_id>/', views.job_info, name='job_info'),
     path('search/', views.Search.as_view(), name='search'),
-    path('add_job', views.add_job, name='add_job'),
-     path('jobs/<int:job_id>/application/', views.application, name='application'),
-     path('profile/<username>/', views.profile, name='profile'),
+    path('add_job', AddJobView.as_view(), name='add_job'),
+    path('jobs/<int:job_id>/application/', views.application, name='application'),
+    path('profile/<username>/', views.profile, name='profile'),
+    path('added_jobs/<pk>', views.AddedJobsList.as_view(), name = 'added_jobs'),
+    path('edit_profile', UserEditProfileView.as_view(), name='edit_profile'),
+    # path('password', auth_views.PasswordChangeView.as_view(template_name='backend/change_password.html'), name = 'change_password'),
+    path('password', PasswordsChangeView.as_view(template_name='backend/change_password.html'), name = 'change_password'),
+    
 ]

@@ -6,48 +6,36 @@ from .models import *
 from .forms import *
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
+from django.urls import reverse_lazy
+from django.views import generic
+from django.views.generic.edit import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import PasswordChangeView
 # Create your views here.
 
 def home(request):
     return render(request, 'backend/index.html')
 
-def register(request):
+class UserRegisterView(generic.CreateView):
+    form_class = RegisterForm
+    template_name = 'backend/register.html'
+    success_url = reverse_lazy('loginPage')
+# def register(request):   
+#     form = UserCreationForm()
     
-    if request.method == "POST":
-        username = request.POST['username']
-        name = request.POST['name']
-        surname = request.POST['surname']
-        email = request.POST['email']
-        password1 = request.POST['password1']
-        password2 = request.POST['password2']
-        
-        if User.objects.filter(username=username):
-            messages.error(request, "Username already exist! Please, try some other username")
-            return redirect('home')
+#     if request.method == 'POST':
+#         form = UserCreationForm(request.POST)
+#         if form.is_valid():
+#             user = form.save(commit=False)
+#             user.username = user.username.lower() 
+#             user.save()
+#             login (request, user)
+#             return redirect('home')
+#         else:
+#             messages.error(request, 'An error occurred during registration')
             
-        if User.objects.filter(email=email):
-            messages.error(request, "Email already registered!")
-            return redirect('home')
-        
-        if len(username)>15:
-            messages.error(request, "Username must be under 15 characters")
-            
-        if password1 != password2:
-            messages.error(request, "Passwords didn't match! Try again!")
-            
-        if not username.isalnum():
-            messages.error(request, "Username must be Alpha-Numeric!")
-            return redirect('home')
-        
-        myuser = User.objects.create_user(username, email, password1)
-        myuser.first_name = name 
-        myuser.last_name = surname
-        myuser.is_active = False
-        myuser.save() 
-                  
-        return redirect('loginPage')
-    
-    return render(request, "backend/register.html")
+#     return render(request, 'backend/register.html', {'form': form})
 
 def loginPage(request):
     
@@ -55,23 +43,25 @@ def loginPage(request):
     if request.user.is_authenticated:
         return redirect('home')
     
-    if request.method == "POST":
-        username = request.POST['username']
-        password1 = request.POST['password1']
+    if request.method == 'POST':
+        username = request.POST.get('username').lower()
+        password = request.POST.get('password')
         
-        user = authenticate(username=username, password=password1)
+        try:
+            user = User.objects.get(username=username)
+        except:
+            messages.error(request, 'User does not exist')
+            
+        user = authenticate(request, username=username, password=password)   
         
         if user is not None:
             login(request, user)
-            name = user.first_name
-            return render(request, 'backend/index.html', {'name': name})
-            
+            return redirect('home')
         else:
-            messages.error(request, "Bad Credentials!")
-            return redirect('loginPage')
-    
+            messages.error(request, 'Username or password does not exist')
+                       
     context = {'page': page}
-    return render(request, "backend/loginPage.html", context)
+    return render(request, 'backend/loginPage.html', context)
 
 def signout(request):
     logout(request)
@@ -106,23 +96,6 @@ class Search(ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         return Job.objects.filter(title__icontains=query).order_by('published')
-
-@login_required
-def add_job(request):
-    if request.method == 'POST':
-        form = NewJobForm(request.POST)
-
-        if form.is_valid():
-            job = form.save(commit=False)
-            job.created_by = request.user
-            job.save()
-            messages.success(request, 'New job added!')
-
-            return redirect('all_jobs')
-    else:
-        form = NewJobForm()
-    
-    return render(request, 'backend/add_job.html', {'form': form})
 
 @login_required
 def delete_job(request, id):
@@ -160,3 +133,30 @@ def application(request, job_id):
 def profile(request, username):
     user = User.objects.get(username=username)
     return render(request, 'backend/profile.html', {"user" : user})
+
+class AddedJobsList(ListView):
+    model = Job
+    template_name = 'backend/added_jobs.html'
+    context_object_name = 'all_jobs'
+
+    def get_queryset(self):
+        return Job.objects.filter(user=self.request.user)
+  
+class AddJobView(LoginRequiredMixin, CreateView):
+    model = Job
+    template_name = 'backend/add_job.html'
+    fields = '__all__'
+    success_url = reverse_lazy('home')
+    
+class UserEditProfileView(LoginRequiredMixin, generic.UpdateView):
+    form_class = EditProfileForm
+    template_name = 'backend/edit_profile.html'
+    success_url = reverse_lazy('home')
+    
+    def get_object(self):
+        return self.request.user
+    
+class PasswordsChangeView(PasswordChangeView):
+    form_class = PasswordChangeForm
+    success_url = reverse_lazy('home')
+    

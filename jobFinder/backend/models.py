@@ -1,6 +1,7 @@
 from tkinter import Place
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 
@@ -67,7 +68,7 @@ class Job(models.Model):
     contractType = models.CharField(choices=CONTRACT_CHOICES, max_length = 50, null=True, blank=True)
     experience = models.CharField(choices=EXPERIENCE_CHOICES, max_length = 50, null=True, blank=True)
     description = models.TextField()
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(null=True, blank=True, default = None)
     proglanguage =  models.CharField(max_length=200, null=True, blank=True)
     place = models.CharField(max_length=200, null=True, blank=True)
     salary = models.CharField(max_length=200, null=True, blank=True)
@@ -75,6 +76,9 @@ class Job(models.Model):
     
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse('job_info', args=(str(self.id)))
     
 class Application(models.Model):
     job = models.ForeignKey(Job, related_name='apply', on_delete=models.CASCADE, null=True)

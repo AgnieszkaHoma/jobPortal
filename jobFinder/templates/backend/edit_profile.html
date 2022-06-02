@@ -1,0 +1,14 @@
+{% include 'navbar.html' %}
+{% block content %}
+
+<br /><br />
+
+<div class='form-group' style="margin-left: 2em;">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button class="btn btn-primary">Update profile</button>
+</div>
+<div style="margin-left: 2em;"> <br>
+<button type="button" class="btn btn-primary"><a href="{% url 'change_password' %}">Change Password</a></button></div>
+{% endblock %}

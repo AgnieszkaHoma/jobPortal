@@ -42,8 +42,12 @@
                            
                 <div class="col-md-2 mio offset-md-4">
                     <button type="button" class="btn btn-outline-warning"><a href="{% url 'jobs' %}">Back to all jobs</a></button></div>
+                    {% if user.is_authenticated %}
                 <div class="col-md-2 myt ">
                     <button type="button" class="btn btn-outline-warning"><a href="{% url 'application' job.id %}">Apply for job</a></button></div>
+                    {% else %}
+                    <button type="button" class="btn btn-outline-warning"><a href="{% url 'loginPage' %}">Log in to apply</a></button></div>
+                    {% endif %}
             </div>
             <br>
             <h6>Published: {{job.published}}</h6>
