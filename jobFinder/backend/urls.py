@@ -19,9 +19,9 @@ urlpatterns = [
     path('add_job', AddJobView.as_view(), name='add_job'),
     path('jobs/<int:job_id>/application/', views.application, name='application'),
     path('profile/<username>/', views.profile, name='profile'),
-    path('added_jobs/<pk>', views.AddedJobsList.as_view(), name = 'added_jobs'),
     path('edit_profile', UserEditProfileView.as_view(), name='edit_profile'),
-    # path('password', auth_views.PasswordChangeView.as_view(template_name='backend/change_password.html'), name = 'change_password'),
     path('password', PasswordsChangeView.as_view(template_name='backend/change_password.html'), name = 'change_password'),
-    
-]
+    path('<int:job_id>/application/', views.application, name = 'application'),
+    path('board', views.board, name='board'),
+    path('application/<int:application_id>', views.see_applications, name='see_applications'),
+    ]

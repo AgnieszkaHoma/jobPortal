@@ -12,6 +12,10 @@ from django.views import generic
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView
+import csv
+from django.http import FileResponse
+import io 
+from django.utils.decorators import method_decorator
 # Create your views here.
 
 def home(request):
@@ -21,21 +25,6 @@ class UserRegisterView(generic.CreateView):
     form_class = RegisterForm
     template_name = 'backend/register.html'
     success_url = reverse_lazy('loginPage')
-# def register(request):   
-#     form = UserCreationForm()
-    
-#     if request.method == 'POST':
-#         form = UserCreationForm(request.POST)
-#         if form.is_valid():
-#             user = form.save(commit=False)
-#             user.username = user.username.lower() 
-#             user.save()
-#             login (request, user)
-#             return redirect('home')
-#         else:
-#             messages.error(request, 'An error occurred during registration')
-            
-#     return render(request, 'backend/register.html', {'form': form})
 
 def loginPage(request):
     
@@ -97,18 +86,21 @@ class Search(ListView):
         query = self.request.GET.get('q')
         return Job.objects.filter(title__icontains=query).order_by('published')
 
-@login_required
-def delete_job(request, id):
-    job = get_object_or_404(Job, id=id, user=request.user.id)
-    if job:
-        job.delete()
-        messages.success(request, 'Job offer was deleted!')
+# @login_required
+# def delete_job(request, job_id):
+#     job = Job.objects.get(pk=job_id)
+#     if request.user == job.user:
+#         Job.objects.filter(id=job_id).delete()
+#         return redirect('backend/delete_job/<job_id>.html')
 
-    return redirect('home')
 
 def signout(request):
     logout(request)
     return redirect('home')
+
+@login_required
+def board(request):
+     return render(request, 'backend/board.html', {'useraccount': request.user.useraccount})
 
 @login_required
 def application(request, job_id):
@@ -123,7 +115,7 @@ def application(request, job_id):
             application.created_by = request.user
             application.save()
             
-            return redirect('jobs')
+            return redirect('home')
     else:
         form = ApplicationForm()
     
@@ -134,13 +126,13 @@ def profile(request, username):
     user = User.objects.get(username=username)
     return render(request, 'backend/profile.html', {"user" : user})
 
-class AddedJobsList(ListView):
-    model = Job
-    template_name = 'backend/added_jobs.html'
-    context_object_name = 'all_jobs'
+# class AddedJobsList(ListView):
+#     model = Job
+#     template_name = 'backend/added_jobs.html'
+#     context_object_name = 'all_jobs'
 
-    def get_queryset(self):
-        return Job.objects.filter(user=self.request.user)
+#     def get_queryset(self):
+#         return Job.objects.filter(user=self.request.user)
   
 class AddJobView(LoginRequiredMixin, CreateView):
     model = Job
@@ -159,4 +151,9 @@ class UserEditProfileView(LoginRequiredMixin, generic.UpdateView):
 class PasswordsChangeView(PasswordChangeView):
     form_class = PasswordChangeForm
     success_url = reverse_lazy('home')
+
+@login_required
+def see_applications(request, application_id):
+    application = get_object_or_404(Application, pk=application_id, created_by=request.user)
     
+    return render(request, 'backend/see_applications.html', {'application': application})

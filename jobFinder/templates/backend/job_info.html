@@ -9,6 +9,8 @@
 {% include 'navbar.html' %}
 {% static 'images' as baseUrl %}
 
+{{user.id}}
+{{job.useraccount.id}}
 
     <div class="container py-4 my-4 mx-auto d-flex flex-column">
         <div class="header">
@@ -31,7 +33,7 @@
                         <li>Programming language: {{job.proglanguage}}</li>
                         <li>Place: {{ job.place }}</li>
                         <li>Salary: {{ job.salary }}$</li>
-                        <li>Description: {{ job.description }}</li>
+                        <li>Description: {{ job.description|safe }}</li>
                     </ul>
                 </div>
                 <div class="col-md-7"> <img src="{{baseUrl}}/{{job.image}}" alt="Job" width="90%" height="95%"> </div>
@@ -41,17 +43,32 @@
             <div class="row r4">
                            
                 <div class="col-md-2 mio offset-md-4">
-                    <button type="button" class="btn btn-outline-warning"><a href="{% url 'jobs' %}">Back to all jobs</a></button></div>
+                    <button type="button" class="btn btn-outline-info"><a href="{% url 'jobs' %}">Back to all jobs</a></button></div>
                     {% if user.is_authenticated %}
                 <div class="col-md-2 myt ">
-                    <button type="button" class="btn btn-outline-warning"><a href="{% url 'application' job.id %}">Apply for job</a></button></div>
+                    <button type="button" class="btn btn-outline-info"><a href="{% url 'application' job.id %}">Apply for job</a></button></div>
                     {% else %}
-                    <button type="button" class="btn btn-outline-warning"><a href="{% url 'loginPage' %}">Log in to apply</a></button></div>
+                    <button type="button" class="btn btn-info"><a href="{% url 'loginPage' %}">Log in to apply</a></button></div>
                     {% endif %}
             </div>
             <br>
             <h6>Published: {{job.published}}</h6>
         </div>
+        <br>
+        {% if user.is_authenticated and useraccount.id == job.useraccount.id %}
+    
+           <hr>
+            {% for application in job.applications.all %}
+            <br>
+            <h4 style="color: blue">List of applicants:<h4>
+            <h5>Applicant username: {{ application.created_by.username }} </h5>
+            <h5>Application title: {{ application.job.title }}</h5>
+            <h5>Applicanr full name: {{ application.fullName}}</h5>
+            <h5>Applicant email: {{ application.email}}</h5>
+            <h5>Applicant about themself: {{ application.introduceYourself}}</h5>
+            <h5>Date added: {{ application.created_at }}</h5><hr>
+            {% endfor %}              
+    {% endif %}      
     </div>
 {% endblock %}
 </html>

@@ -1,0 +1,15 @@
+{% block content %}
+{% include 'navbar.html'%}
+<center>
+        <h1>My applications</h1>
+        <h3>Click for more info<h3>
+        {% for application in request.user.applications.all %}
+        <div class="application">
+            <a href="{% url 'see_applications' application.id %}">{{ application.job.title}}</a>
+        </div>
+        {% empty %}
+        <p>No application to show.</p>
+        {% endfor %}
+    </center>
+    
+{% endblock %}

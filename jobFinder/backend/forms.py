@@ -17,19 +17,20 @@ class RegisterForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(RegisterForm, self).__init__(*args, **kwargs)
 class ContactForm(ModelForm):
+    email = forms.EmailField(required=True)
+    title = forms.CharField(max_length=500, required=True)
     class Meta:
         model = Contact
         fields = '__all__'
         
-class NewJobForm(ModelForm):
+class NewJobForm(forms.ModelForm):
     class Meta:
         model = Job 
-        fields = ['title', 'company', 'jobType', 'category', 'contractType', 'experience', 'description', 'image', 'proglanguage', 'place', 'salary']
-        
-class ApplicationForm(ModelForm):
+        fields = ['title', 'company', 'jobType', 'category', 'contractType', 'experience', 'description', 'proglanguage', 'place', 'salary']
+class ApplicationForm(forms.ModelForm):
     class Meta:
         model = Application
-        fields = ['fullName', 'email', 'introduceYourself', 'file']
+        fields = ['fullName', 'email', 'introduceYourself']
         
 class EditProfileForm(UserChangeForm):
     first_name = models.CharField(max_length=100)
@@ -39,4 +40,4 @@ class EditProfileForm(UserChangeForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'password')
-        
+     

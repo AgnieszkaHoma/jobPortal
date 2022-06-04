@@ -17,14 +17,14 @@
 	<center><h1>All jobs</h1><center>      
 	<h4>We have found {{jobs.count}} jobs.<h4> 
 	<br>
-	<div class="container">
-		<div class="row text-center">
+	{% comment %} <div class="container"> {% endcomment %}
+		{% comment %} <div class="row text-center"> {% endcomment %}
 		
-
-		<div class="col-xl-3 col-sm-6 mb-5">
+{% comment %} 
+		<div class="col-xl-3 col-sm-6 mb-5"> {% endcomment %}
 		{% for job in jobs %}	
-		<div class="col-xs-6 "
-
+		{% comment %} <div class="col-xs-6 " {% endcomment %}
+<div class="container">
 <div class="card">
     <h5 class="card-header">{{job.title}}</h5>
     <div class="card-body">
@@ -37,7 +37,9 @@
       <a href="{% url 'job_info' job.id %}" class="btn btn-primary">Check offer</a>
     </div>
   </div>
+  <br>
 </div>
+	{% comment %} </div> {% endcomment %}
 {% endfor %}
 {% endblock %}
 </body>

@@ -1,9 +1,0 @@
-{% include 'navbar.html' %}
-
-{% block content %}
-{% for job in all_jobs %}
-<h1>{{job.user.username}}</h1>
-    <p>{{job.title}}</p>
-
-{% endfor %}
-{% endblock content %}

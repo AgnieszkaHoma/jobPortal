@@ -1,0 +1,12 @@
+{% block content %}
+{% include 'navbar.html' %}
+<center>
+<h1>View application<h1>
+    <h2 class="subtitle">{{ application.job.title }}</h2>
+
+<small>Date added: {{ application.created_at }}</small>
+<p>Full name: {{ application.fullName}}</p>
+<p>Email: {{ application.email}}</p>
+<p>Introduct yourself: {{ application.introduceYourself}}</p>
+</center>
+{% endblock %}

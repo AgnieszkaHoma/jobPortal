@@ -1,1 +1,96 @@
-{% include 'navbar.html' %}
+<!DOCTYPE html>
+{% extends 'main.html'%} 
+{% load static %}
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Jobs</title>
+		<meta name="description" content="" />
+	</head>
+	<body>
+	{% block content %} 
+    {% include 'navbar.html' %}
+    <br>
+	<center>
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+              
+            <img
+              src="https://cdn.pixabay.com/photo/2020/04/03/06/35/work-4997565_960_720.png"
+              alt="Trendy Pants and Shoes"
+              class="img-fluid rounded-start"
+            /> 
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Job portal</h5>
+              <p class="card-text">
+                Find a job offer that is right for you among many advertisements. Take the first step and submit applications for the selected position. Good luck!
+              </p>
+            </div>           
+          </div>
+        </div>
+      </div>
+      <br><br>
+      <h2>Website statistics</h2>
+
+      
+
+      <div class="col-xl-3 col-sm-6 col-12 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between px-md-1">
+              <div class="align-self-center">
+                <i class="fas fa-map-marker-alt text-danger fa-3x"></i>
+              </div>
+              <div class="text-end">
+                <h3>125</h3>
+                <p class="mb-0">Total Visits</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-sm-6 col-12 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between px-md-1">
+              <div>
+                <h3 class="text-success">23</h3>
+                <p class="mb-0">New Clients</p>
+              </div>
+              <div class="align-self-center">
+                <i class="far fa-user text-success fa-3x"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+        <div class="col-xl-3 col-sm-6 col-12 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex justify-content-between px-md-1">
+                <div class="align-self-center">
+                  <i class="fas fa-pencil-alt text-info fa-3x"></i>
+                </div>
+                <div class="text-end">
+                  <h3>3</h3>
+                  <p class="mb-0">New job offers</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+
+      <center>
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+{% endblock %}
+</body>
+</html>

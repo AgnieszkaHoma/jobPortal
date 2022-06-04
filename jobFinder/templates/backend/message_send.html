@@ -1,3 +1,4 @@
+{% extends 'main.html'%}
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
@@ -10,8 +11,12 @@
 	</head>
 	<body>
 		{% block content %} 
-        {% include 'navbar.html' %}      
-        <center><h1>Message send</h1></center>
+        {% include 'navbar.html' %}  
+		<br>    
+        <center><h1>Message send</h1>
+		<br><br>
+		<img src="https://cdn.pixabay.com/photo/2016/04/24/14/19/paper-1349664_960_720.png"></center>
 		{% endblock %}
+		
 	</body>
 </html>
