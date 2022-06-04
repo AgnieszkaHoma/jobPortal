@@ -9,9 +9,6 @@
 {% include 'navbar.html' %}
 {% static 'images' as baseUrl %}
 
-{{user.id}}
-{{job.useraccount.id}}
-
     <div class="container py-4 my-4 mx-auto d-flex flex-column">
         <div class="header">
             <div class="row r1">
@@ -36,7 +33,7 @@
                         <li>Description: {{ job.description|safe }}</li>
                     </ul>
                 </div>
-                <div class="col-md-7"> <img src="{{baseUrl}}/{{job.image}}" alt="Job" width="90%" height="95%"> </div>
+                <div class="col-md-7"> <img src="https://cdn.pixabay.com/photo/2015/09/04/23/28/wordpress-923188_960_720.jpg" alt="Job" width="90%" height="95%"> </div>
             </div>
         </div>
         <div class="footer d-flex flex-column mt-5">

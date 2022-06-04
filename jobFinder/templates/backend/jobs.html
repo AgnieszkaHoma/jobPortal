@@ -13,17 +13,17 @@
 	{% block content %} 
     {% include 'navbar.html' %}
 	
-	{% static 'images' as baseUrl %}
-	<center><h1>All jobs</h1><center>      
+	<center>
+	<h1>All jobs</h1>
+	<small>To check who has applied to your job offer, just click on your advertisement to check the details.</small>
+	<center> 
+		<hr>  
+	   
 	<h4>We have found {{jobs.count}} jobs.<h4> 
 	<br>
-	{% comment %} <div class="container"> {% endcomment %}
-		{% comment %} <div class="row text-center"> {% endcomment %}
-		
-{% comment %} 
-		<div class="col-xl-3 col-sm-6 mb-5"> {% endcomment %}
-		{% for job in jobs %}	
-		{% comment %} <div class="col-xs-6 " {% endcomment %}
+	
+		{% for job in jobss %}	
+<h5>		
 <div class="container">
 <div class="card">
     <h5 class="card-header">{{job.title}}</h5>
@@ -39,8 +39,34 @@
   </div>
   <br>
 </div>
-	{% comment %} </div> {% endcomment %}
+</h5>
 {% endfor %}
+
+<br>
+
+<nav aria-label="Page navigation example">
+	<ul class="pagination justify-content-center">
+	  
+
+
+{% if jobss.has_previous %}
+<li class="page-item"><a class="page-link" href = "?page=1">&laquo First</a></li>
+<li class="page-item"><a class="page-link" href = "?page={{ jobss.previous_page_number }}">Previous</a></li>
+{% endif %}
+
+{% for i in nums %}
+<li class="page-item"><a class="page-link" href = "?page={{forloop.counter}}">{{forloop.counter}}</a></li>
+{% endfor %}
+
+{% if jobss.has_next %}
+<li class="page-item"><a class="page-link" href = "?page={{jobss.next_page_number}}">Next</a></li>
+<li class="page-item"><a class="page-link" href = "?page={{jobss.paginator.num_pages}}">Last &raquo</a></li>
+{% endif %}
+
+</ul>
+</nav>
+</br>
+
 {% endblock %}
 </body>
 </html>

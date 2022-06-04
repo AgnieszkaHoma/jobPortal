@@ -16,6 +16,7 @@ import csv
 from django.http import FileResponse
 import io 
 from django.utils.decorators import method_decorator
+from django.core.paginator import Paginator
 # Create your views here.
 
 def home(request):
@@ -57,8 +58,13 @@ def signout(request):
     return redirect('home')
 
 def all_jobs(request):
-    context = { 'jobs': Job.objects.all() }
-    return render(request, 'backend/jobs.html', context)
+    jobs = Job.objects.all()
+    p = Paginator(Job.objects.all(), 3)
+    page = request.GET.get('page')
+    jobss = p.get_page(page)
+    nums = "c" * jobss.paginator.num_pages
+    return render(request, 'backend/jobs.html', {'jobs': jobs, 'jobss': jobss, 'nums':nums})
+    
 
 def about(request):   
     return render(request, 'backend/about.html')
