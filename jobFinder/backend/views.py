@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.urls import reverse_lazy
 from django.views import generic
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView
 import csv
@@ -163,3 +163,8 @@ def see_applications(request, application_id):
     application = get_object_or_404(Application, pk=application_id, created_by=request.user)
     
     return render(request, 'backend/see_applications.html', {'application': application})
+
+class DeleteJobView(LoginRequiredMixin, DeleteView):
+    model = Job
+    template_name = 'backend/delete_job.html'
+    success_url = reverse_lazy('home')
