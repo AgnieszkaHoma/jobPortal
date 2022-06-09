@@ -45,7 +45,8 @@
                 <div class="col-md-2 myt ">
                    <a type="button" class="btn btn-outline-info" href="{% url 'application' job.id %}">Apply for job</a></div>
                     {% else %}
-                    <a type="button" class="btn btn-info" href="{% url 'loginPage' %}">Log in to apply</a></div>
+                    <div class="col-md-2 myt ">
+                   <a type="button" class="btn btn-outline-info" href="{% url 'loginPage' %}">Log in to apply</a></div>
                     {% endif %}
             </div>
             <br>
