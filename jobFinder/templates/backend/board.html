@@ -1,15 +1,20 @@
+{% load static%}
 {% block content %}
 {% include 'navbar.html'%}
 <center>
-        <h1>My applications</h1>
-        <h3>Click for more info<h3>
+        <br>
+        <h2>My applications</h2>
+        <br>
+        <h3>Click on the button for more info<h3>
         {% for application in request.user.applications.all %}
         <div class="application">
-            <a href="{% url 'see_applications' application.id %}">{{ application.job.title}}</a>
+            <a type="button" class="btn btn-primary" href="{% url 'see_applications' application.id %}">{{ application.job.title}}</a>
         </div>
         {% empty %}
         <p>No application to show.</p>
         {% endfor %}
     </center>
     
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
 {% endblock %}

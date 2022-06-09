@@ -13,10 +13,8 @@
 		{% include 'navbar.html' %}
 		
 		{% block content %}	
-		<br>
-		{% comment %} <div style="margin-left: 2em;"> {% endcomment %}
-			<div>
-				<center>
+		<br>		
+		<center>
 			<h3>Register here</h3> <br>
 			<form method="POST" action="" >
 				{% csrf_token %}
@@ -25,9 +23,10 @@
 			</form> <br>
 			<p>Already signed up?
 			<a href="{% url 'loginPage' %}">Login</a></p>
-			</center>
-		</div>
-		
+			</center>		 
+
 		{% endblock content %}
+
+		
 	</body>
 </html>

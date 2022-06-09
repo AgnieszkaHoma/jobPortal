@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-{% extends 'main.html'%} {% load static %}
+{% extends 'main.html'%}
+{% load static %}
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>Contact</title>
 		<meta name="description" content="" />
+		
 	</head>
-	<body>
+	<body>		
 		{% block content %}
         {% include 'navbar.html' %}
 
@@ -33,10 +34,11 @@
 			<a href="{% url 'loginPage' %}">
 			<button class="btn btn-primary" type="submit">Login</button></a>
 			<a href="{% url 'register' %}">
-			<button class="btn btn-primary" type="submit">Register</button></s>
+			<button class="btn btn-primary" type="submit">Register</button></a>
 		</center>
 		{% endif %}
 
 		{% endblock %}
+		
 	</body>
 </html>
