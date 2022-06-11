@@ -132,13 +132,6 @@ def profile(request, username):
     user = User.objects.get(username=username)
     return render(request, 'backend/profile.html', {"user" : user})
 
-# class AddedJobsList(ListView):
-#     model = Job
-#     template_name = 'backend/added_jobs.html'
-#     context_object_name = 'all_jobs'
-
-#     def get_queryset(self):
-#         return Job.objects.filter(user=self.request.user)
   
 class AddJobView(LoginRequiredMixin, CreateView):
     model = Job
