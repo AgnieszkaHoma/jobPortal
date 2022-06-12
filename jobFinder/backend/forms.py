@@ -27,7 +27,7 @@ class ContactForm(ModelForm):
 class NewJobForm(forms.ModelForm):
     class Meta:
         model = Job 
-        fields = ['title', 'company', 'jobType', 'category', 'contractType', 'experience', 'description', 'language', 'place', 'salary']
+        fields = ['title', 'company', 'jobType', 'category', 'contractType', 'experience', 'description', 'proglanguage', 'place', 'salary']
 class ApplicationForm(forms.ModelForm):
     class Meta:
         model = Application

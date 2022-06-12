@@ -8,16 +8,22 @@
 <body>
 {% include 'navbar.html' %}
 {% block content %}
-<center><h1>Job offers:</h1><hr>
+<center><h1>Job offers:</h1><br>
        <h4> {% for job in jobs %}
-        
-            <div class="col-md-8 mt-4 mb-4" >
-            <h3>{{job.title}}</h3>
-            <p>Category: {{job.category}}</p>
-            <p>{{job.published}}</p>
-            <a  class="button" role="button" href="{% url 'job_info' job.id %}">Check offer</a>
-            </div>        
-            <hr>
+
+        <div class="card w-75">
+              <div class="card-header">
+                {{job.title}}
+              </div>
+              <div class="card-body">
+                <div class="card-text">
+                  <p>Category: {{job.category}}</p>
+                  <p>{{job.published}}</p>
+                </div>
+                <a  class="button" role="button" href="{% url 'job_info' job.id %}">Check offer</a>
+              </div>
+            </div>
+<br>
         {% endfor %}
       </h4>
         </div>

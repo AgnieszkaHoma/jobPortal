@@ -5,12 +5,14 @@
         <br>
         <h2>My applications</h2>
         <br>
-        <h3>Click on the button for more info<h3>
+        <h3>Click on the button for more info.<h3>
         {% for application in request.user.applications.all %}
         <div class="application">
             <a type="button" class="btn btn-primary" href="{% url 'see_applications' application.id %}">{{ application.job.title}}</a>
         </div>
+        <br>
         {% empty %}
+        <br>
         <p>No application to show.</p>
         {% endfor %}
     </center>

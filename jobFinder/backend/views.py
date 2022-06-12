@@ -129,7 +129,7 @@ def profile(request, username):
 class AddJobView(LoginRequiredMixin, CreateView):
     model = Job
     template_name = 'backend/add_job.html'
-    fields = ['title', 'company', 'jobType', 'category', 'contractType', 'experience', 'description', 'language', 'place', 'salary']
+    fields = ['title', 'company', 'jobType', 'category', 'contractType', 'experience', 'description', 'proglanguage', 'place', 'salary']
     success_url = reverse_lazy('home')
     
 class UserEditProfileView(LoginRequiredMixin, generic.UpdateView):
@@ -153,6 +153,7 @@ def see_applications(request, application_id):
 class DeleteJobView(LoginRequiredMixin, DeleteView):
     model = Job
     template_name = 'backend/delete_job.html'
+    success_url = reverse_lazy('jobs')
     
 def contact_list(request):
     contact_list = Contact.objects.all().order_by('-date')
