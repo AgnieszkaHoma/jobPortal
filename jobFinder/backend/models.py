@@ -46,6 +46,7 @@ class Contact(models.Model):
     email = models.EmailField(null=True, blank=True)
     title = models.CharField(max_length=500, null=True, blank=True)
     message = models.TextField(null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True, null=True)
     
     def __str__(self):
         return self.email
@@ -59,7 +60,7 @@ class Job(models.Model):
     contractType = models.CharField(choices=CONTRACT_CHOICES, max_length = 50, null=True, blank=True)
     experience = models.CharField(choices=EXPERIENCE_CHOICES, max_length = 50, null=True, blank=True)
     description = RichTextField(blank=True, null=True)
-    proglanguage =  models.CharField(max_length=200, null=True, blank=True)
+    language =  models.CharField(max_length=200, null=True, blank=True)
     place = models.CharField(max_length=200, null=True, blank=True)
     salary = models.CharField(max_length=200, null=True, blank=True)
     published = models.DateTimeField(default=timezone.now)

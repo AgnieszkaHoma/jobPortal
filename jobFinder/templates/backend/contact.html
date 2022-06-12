@@ -14,20 +14,16 @@
         {% include 'navbar.html' %}
 
 		{% if user.is_authenticated %}
-			<div class="card bg-transparent text-center">
-				<div class="container-fluid">
-					<form action="" method="post" style="width: 50vw; margin-left: 25vw">
+		<br>
+
+	<center> 
+		<h2>Contact</h2><br>
+					<form action="" method="post">
 						{% csrf_token %}
-						<h5>Email:</h5>
-						{{ form.email }}
-						<h5>Title:</h5>
-						{{ form.title }}
-						<h5>Message:</h5>
-						{{ form.message }} <br />
+						{{ form.as_p}}
 						<button class="btn btn-primary" type="submit">Send</button>
 					</form>
-				</div>
-			</div>
+				</center>
 		{% else %}
 		<br><br><br>
 			<center><h3>Sorry, you have to be logged in to contact with us. <br> Please, logged in or register.</h3><br>
@@ -37,7 +33,7 @@
 			<button class="btn btn-primary" type="submit">Register</button></a>
 		</center>
 		{% endif %}
-
+<center><img src="https://cdn.pixabay.com/photo/2017/06/08/20/18/computer-icon-2384752_1280.png" height=300px></center>
 		{% endblock %}
 		
 	</body>

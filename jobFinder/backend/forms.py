@@ -19,6 +19,7 @@ class RegisterForm(UserCreationForm):
 class ContactForm(ModelForm):
     email = forms.EmailField(required=True)
     title = forms.CharField(max_length=500, required=True)
+    message = forms.CharField(widget = forms.Textarea, max_length = 2000, required=True)
     class Meta:
         model = Contact
         fields = '__all__'
@@ -26,7 +27,7 @@ class ContactForm(ModelForm):
 class NewJobForm(forms.ModelForm):
     class Meta:
         model = Job 
-        fields = ['title', 'company', 'jobType', 'category', 'contractType', 'experience', 'description', 'proglanguage', 'place', 'salary']
+        fields = ['title', 'company', 'jobType', 'category', 'contractType', 'experience', 'description', 'language', 'place', 'salary']
 class ApplicationForm(forms.ModelForm):
     class Meta:
         model = Application

@@ -2,12 +2,19 @@
 {% include 'navbar.html' %}
 <center>
 <h1>View application<h1>
-    <h2 class="subtitle">{{ application.job.title }}</h2>
-
-<small>Date added: {{ application.created_at }}</small>
-<p>Full name: {{ application.fullName}}</p>
-<p>Email: {{ application.email}}</p>
-<p>Introduct yourself: {{ application.introduceYourself}}</p>
+    <h2 class="subtitle"></h2>
+<div class="card w-50">
+  <div class="card-body">
+    <h4 class="card-title">{{ application.job.title }}</h4><br>
+    <div class="card-text">
+      <p>Full name: {{ application.fullName}}</p>
+      <p>Email: {{ application.email}}</p>
+      <p>Introduct yourself: {{ application.introduceYourself}}</p>
+      <p>Date: {{ application.created_at }}</p>
+    </div>
+    
+  </div>
+</div>
 </center>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">

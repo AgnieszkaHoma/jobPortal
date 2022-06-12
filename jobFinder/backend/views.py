@@ -92,13 +92,6 @@ class Search(ListView):
         query = self.request.GET.get('q')
         return Job.objects.filter(title__icontains=query).order_by('published')
 
-# @login_required
-# def delete_job(request, job_id):
-#     job = Job.objects.get(pk=job_id)
-#     if request.user == job.user:
-#         Job.objects.filter(id=job_id).delete()
-#         return redirect('backend/delete_job/<job_id>.html')
-
 
 def signout(request):
     logout(request)
@@ -136,7 +129,7 @@ def profile(request, username):
 class AddJobView(LoginRequiredMixin, CreateView):
     model = Job
     template_name = 'backend/add_job.html'
-    fields = '__all__'
+    fields = ['title', 'company', 'jobType', 'category', 'contractType', 'experience', 'description', 'language', 'place', 'salary']
     success_url = reverse_lazy('home')
     
 class UserEditProfileView(LoginRequiredMixin, generic.UpdateView):
@@ -160,4 +153,7 @@ def see_applications(request, application_id):
 class DeleteJobView(LoginRequiredMixin, DeleteView):
     model = Job
     template_name = 'backend/delete_job.html'
-    success_url = reverse_lazy('home')
+    
+def contact_list(request):
+    contact_list = Contact.objects.all().order_by('-date')
+    return render(request, 'backend/contact_list.html', {'contact_list': contact_list})
