@@ -79,7 +79,6 @@ class Application(models.Model):
     fullName = models.CharField(max_length=100, null=True, blank=True)
     email = models.EmailField()   
     introduceYourself = models.TextField(null=True)
-    file = models.FileField(null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     created_by = models.ForeignKey(User, related_name='applications', on_delete=models.CASCADE, null=True)
     
