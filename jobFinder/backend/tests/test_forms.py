@@ -7,7 +7,7 @@ class TestForms(SimpleTestCase):
         form = ContactForm(data={
             'email' : 'test@example.com',
             'title' : 'test title', 
-            'message' : 'test message'
+            'message' : 'test message',
             
         })
         
@@ -29,7 +29,7 @@ class TestForms(SimpleTestCase):
         
         self.assertTrue(form.is_valid())
         
-    def test_contact_form_no_data(self):
+    def test_application_form_no_data(self):
         form = ApplicationForm(data={})
         self.assertFalse(form.is_valid())
         self.assertEquals(len(form.errors), 2)
