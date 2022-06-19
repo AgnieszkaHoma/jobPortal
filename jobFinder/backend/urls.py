@@ -3,7 +3,7 @@ from django.urls import path, include
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
-from . views import AddJobView, UserEditProfileView, PasswordsChangeView
+from . views import UserEditProfileView, PasswordsChangeView
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -16,7 +16,7 @@ urlpatterns = [
     path('contact',views.contact, name="contact"),
     path('jobs/<int:job_id>/', views.job_info, name='job_info'),
     path('search/', views.Search.as_view(), name='search'),
-    path('add_job', AddJobView.as_view(), name='add_job'),
+    path('add_job', views.addjob, name='add_job'),
     path('jobs/<int:job_id>/application/', views.application, name='application'),
     path('profile/<username>/', views.profile, name='profile'),
     path('edit_profile', UserEditProfileView.as_view(), name='edit_profile'),

@@ -25,6 +25,11 @@ class ContactForm(ModelForm):
         fields = '__all__'
         
 class NewJobForm(forms.ModelForm):
+    title = forms.CharField(required=True)
+    company = forms.CharField(required=True)
+    proglanguage = forms.CharField(required=True)
+    place = forms.CharField(required=True)
+    salary = forms.CharField(required=True)
     class Meta:
         model = Job 
         fields = ['title', 'company', 'jobType', 'category', 'contractType', 'experience', 'description', 'proglanguage', 'place', 'salary']

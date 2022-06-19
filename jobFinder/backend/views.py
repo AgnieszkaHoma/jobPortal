@@ -124,13 +124,16 @@ def application(request, job_id):
 def profile(request, username):
     user = User.objects.get(username=username)
     return render(request, 'backend/profile.html', {"user" : user})
-
   
-class AddJobView(LoginRequiredMixin, CreateView):
-    model = Job
-    template_name = 'backend/add_job.html'
-    fields = ['title', 'company', 'jobType', 'category', 'contractType', 'experience', 'description', 'proglanguage', 'place', 'salary']
-    success_url = reverse_lazy('home')
+def addjob(request):
+    if request.method == 'POST':
+        form = NewJobForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'backend/success_add.html')
+    form = NewJobForm()
+    context = {'form': form}
+    return render(request, 'backend/add_job.html', context)
     
 class UserEditProfileView(LoginRequiredMixin, generic.UpdateView):
     form_class = EditProfileForm

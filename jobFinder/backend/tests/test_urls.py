@@ -20,9 +20,9 @@ class TestUrls(SimpleTestCase):
         url = reverse('jobs')
         self.assertEquals(resolve(url).func, all_jobs)
         
-    def test_add_job_url_is_resolved(self):
-        url = reverse('add_job')
-        self.assertEquals(resolve(url).func.view_class, AddJobView)
+    def test_search_url_is_resolved(self):
+        url = reverse('search')
+        self.assertEquals(resolve(url).func.view_class, Search)
         
     def test_application_url_is_resolved(self):
         url = reverse('application', args=[2])
