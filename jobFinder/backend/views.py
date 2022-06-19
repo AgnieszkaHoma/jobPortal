@@ -35,14 +35,14 @@ def loginPage(request):
     
     if request.method == 'POST':
         username = request.POST.get('username').lower()
-        password = request.POST.get('password')
+        password1 = request.POST.get('password')
         
         try:
             user = User.objects.get(username=username)
         except:
             messages.error(request, 'User does not exist')
             
-        user = authenticate(request, username=username, password=password)   
+        user = authenticate(request, username=username, password=password1)   
         
         if user is not None:
             login(request, user)
